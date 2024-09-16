@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Patient Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!--70% width of 100% zoom of viewport is the minimum for landscape layout, smaller than 60% requires medium landscape layout (tablets)-->
+    <nav>
+      <div>
+        <h1 style="margin: 10px 0 20px 10px; color: white;">Navigator</h1>
+        <button onclick="openNav(0)" class="longButt" style="background-color: white; width: calc(100% - 20px); margin: 10px 0 0px 10px;">History</button>
+        <button onclick="openNav(1)" class="longButt" style="background-color: white; width: calc(100% - 20px); margin: 10px 0 0px 10px;">Examination</button>
+        <button onclick="openNav(2)" class="longButt" style="background-color: white; width: calc(100% - 20px); margin: 10px 0 0px 10px;">Investigation</button>
+        <button onclick="openNav(3)" class="longButt" style="background-color: white; width: calc(100% - 20px); margin: 10px 0 0px 10px;">Diagnosis</button>
+        <button onclick="openNav(4)" class="longButt" style="background-color: white; width: calc(100% - 20px); margin: 10px 0 0px 10px;">Treatment</button>
+      </div>
+      <div style="margin-bottom: 10px;">
+        <button onclick="saveDraft()" class="longButt" style="background-color: lightgray; width: calc(100% - 20px); margin: 80px 0 0px 10px;">Save Draft</button>
+        <button onclick="checkOut()" class="longButt" style="background-color: lightgray; width: calc(100% - 20px); margin: 10px 0 0px 10px;">Check-out</button>
+      </div>
+    </nav>
+    <div class="content">
+      <div id="pp" class="ppHeader">
+        <div class="ppHorDiv" style="justify-content: space-between; align-items: center;">
+          <div class="ppHorDiv" style="gap: 0;">
+            <h1>Patient Profile</h1>
+            <h1 style="font-weight: 500;">&gt;</h1>
+            <h1 style="font-weight: 500;">History</h1>
+          </div>
+          <button class="longButt" style="background-color: black; color: white; padding: 0; margin-right: 10px; height: 48px; width: 48px; border-radius: 12px; border: none; cursor: pointer;">Set</button>
+        </div>
+        <div id="ptIdDiv" class="ppSubH">
+          <div class="ppHorDiv" style="margin-left: 10px;">
+            <img id="ptPfp" class="ptPfp">
+            <div id="ptNameDiv" class="ppVertDiv">
+              <p id="ptRegID" style="margin-bottom: 0.2vw;">Reg: 1</p>
+              <h2 id="ptName" style="margin-top: 0.2vw;">John Doe</h2>
+            </div>
+            <div id="ptAgeDiv" class="ppHorDiv" style="gap: 0;">
+              <div class="ppVertDiv">
+                <p id="ptICPassType">IC</p>
+                <p>Age</p>
+              </div>
+              <div class="ppVertDiv">
+                <p id="ptICPass">: 900101-10-5431</p>
+                <p id="ptAge">: 34 Yrs 8 Months</p>
+              </div>
+            </div>
+          </div>
+          <div class="ppHorDiv" style="gap: 0;">
+            <button class="longButt">16 September 2024</button>
+            <button class="longButt">&#9654; Case Presentation</button>
+          </div>
+          
+        </div>
+      </div>
+      <div id="Hx" class="ppInputs">
+        <div id="ptCCDiv" class="ptIHorDiv">
+          <label style="margin: 10px; font-weight: 600;">Chief Complaint: </label>
+          <textarea rows="4" cols="50" style="flex: 1; margin: 10px; resize: none;"></textarea>
+        </div>
+        <p style="margin: 0 10px; font-style: italic; font-size: smaller;"><b>*Pain history reminder:</b> Site, Onset, Character, Radiate, Association, Timing, Exacerbators, Severity</p>
+        <div id="ptCCTx" class="ptIHorDiv" style="gap: 10px; align-items: center; margin-bottom: 10px;">
+          <label style="margin-left: 10px; font-weight: 600;">Treatment type: </label>
+          <button onclick="txCC(0)" id="txCCC/up" class="txButton longButt">C/up</button>
+          <button onclick="txCC(1)" id="txCCS&P" class="txButton longButt">S&P</button>
+          <button onclick="txCC(2)" id="txCCCAP" class="txButton longButt">CAP</button>
+          <button onclick="txCC(3)" id="txCCXLA" class="txButton longButt">XLA</button>
+          <button onclick="txCC(4)" id="txCCRPD" class="txButton longButt">RPD</button>
+          <button onclick="txCC(5)" id="txCCC&B" class="txButton longButt">C&B</button>
+          <button onclick="txCC(6)" id="txCCMOS" class="txButton longButt">MOS</button>
+          <button onclick="txCC(7)" id="txCCSmile" class="txButton longButt">Smile</button>
+          <button onclick="txCC(8)" id="txCCOrtho" class="txButton longButt">Ortho</button>
+          <button onclick="txCC(9)" id="txCCOther" class="txButton longButt">Other</button>
+        </div>
+        <div id="ptBP" class="ptIVerDiv">
+          <div class="ppHorDiv" style="margin: 10px; margin-bottom: 0; justify-content: space-between;">
+            <div class="ppHorDiv">
+              <div class="ppVertDiv">
+                <label style="font-weight: bold;">Vital Signs: </label>
+                <p style="margin: 0; margin-bottom: 10px; font-size: 10pt; font-style: italic;">*for >35 years old</p>
+              </div>
+              <div id="summaryVitalSign" class="ppHorDiv" style="display: none; gap: 0; font-size: smaller;">
+                <p>BP: </p>
+                <p id="bpSummary">No input</p>
+                <p id="bpAlertSummary"></p>
+                <p>|</p>
+                <p>HbA1c: </p>
+                <p id="HbA1cSummary">No input</p>
+                <p id="HbA1cAlertSummary"></p>
+              </div>
+            </div>
+            <button onclick="closeDiv('ptBP')" id="dropDownButtptBP" class="dropDownButt">&gt;</button>
+          </div>
+          <div id="vitalSign" class="ptIHorDiv" style="margin-top: 0;">
+            <div class="ppVertDiv" style="margin-left: 10px;">
+              <div class="ppHorDiv" style="gap: 10px; align-items: center;">
+                <label style="margin: 10px;">Blood pressure:</label>
+                <input id="sbp" style="width: 40px; height: 30px;">
+                <label style="font-size: 18pt;"> / </label>
+                <input id="dbp" style="width: 40px; height: 30px;">
+                <label>mmHg</label>
+              </div>
+              <p id="ppBPAlert" style="font-size: smaller; font-style: italic;"></p>
+            </div>
+            <div style="margin: 0 3vw; height: 100%; display: flex; flex-direction: row; align-items: center;">
+              <svg style="width: 1px; height: 80%;">
+                <rect style= "height: 100%; width: 1px; background-color: red;"></rect>
+              </svg>
+            </div>
+            <div class="ppVertDiv" style="margin-left: -10px;">
+              <div class="ppHorDiv" style="gap: 10px; align-items: center;">
+                <label style="margin: 10px;">HbA1c:</label>
+                <input id="HbA1c" style="width: 40px; height: 30px;">
+                <label style="font-size: 18pt;"> % </label>
+              </div>
+              <p id="ppHbA1cAlert" style="font-size: smaller; font-style: italic;"></p>
+            </div>
+          </div>
+        </div>
+        <div id="ptHxInput" class="ptIVerDiv" style="background-color: rgb(225, 225, 225); padding: 0 10px; width: calc(100% - 20px);">
+          <div class="ppHorDiv" style="margin: 10px 0 10px 0; justify-content: space-between;">
+            <div class="ppVertDiv">
+              <label style="font-weight: bold;">Patient's History: </label>
+              <p style="margin: 0; font-size: 10pt; font-style: italic;">*takes every year</p>
+            </div>
+            <button onclick="closeDiv('ptHxInput')" id="dropDownButtptHxInput" class="dropDownButt">&gt;</button>
+          </div>
+          <div id="summaryHx" class="ptIVerDiv" style="display: none; margin: 0 0 10px 0; font-size: smaller;">
+            <div id="summaryMHx"></div>
+            <div id="summarySHx">
+              <p id="SHxScore"></p>
+            </div>
+            <div id="summaryDeHx">
+              <p id="DeHxScore"></p>
+              <p id="DeTraumaHx"></p>
+            </div>
+          </div>
+          <div id="ptMHx" class="ptIVerDiv" style="margin: 0;">
+            <label style="margin: 10px 0px 0px 10px; font-weight: 600;">Medical History: </label>
+            <div id="ptMhxSelDiv" style="margin: 10px;" class="ppHorDiv">
+              <div style="display: flex; flex-direction: row; gap: 2px;">
+                <input type="text" id="searchInput" class="autocomplete-input" style="font-family: 'Outfit', sans-serif;" placeholder="Search...">
+                <button>Enter</button>
+              </div>
+              <div>
+                <label>Filter: </label>
+                <select id="ptMhxSelSys" style="font-family: 'Outfit', sans-serif;">
+                  <option value="none"></option>
+                  <option value="cvs">Cardiovascular System</option>
+                  <option value="ecs">Endocrine System</option>
+                </select>
+              </div>
+            </div>
+            <textarea rows="4" cols="50" style="flex: 1; margin: 10px; resize: none;"></textarea>
+          </div>
+          <div id="ptSHx" class="ptIVerDiv">
+            <label style="margin: 10px 0px 0px 10px; font-weight: 600;">Social History:</label>
+            <div id="ptSHxSelDiv">
+              <div class="ppHorDiv" style="margin: 10px; gap: 10px; align-items: center;">
+                <button id="ptSHx0" onclick="updateButton('ptSHx', 0)" class="listButton"></button>
+                <label>Tobacco use</label>
+              </div>
+              <div class="ppHorDiv" style="margin: 10px; gap: 10px; align-items: center;">
+                <button id="ptSHx1" onclick="updateButton('ptSHx', 1)" class="listButton"></button>
+                <label>Alcoholic</label>
+              </div>
+              <div class="ppHorDiv" style="margin: 10px; gap: 10px; align-items: center;">
+                <button id="ptSHx2" onclick="updateButton('ptSHx', 2)" class="listButton"></button>
+                <label>Drug abuse</label>
+              </div>
+              <div class="ppHorDiv" style="margin: 10px; gap: 10px; align-items: center;">
+                <button id="ptSHx3" onclick="updateButton('ptSHx', 3)" class="listButton"></button>
+                <label>Betel quid use</label>
+              </div>
+              <div class="ppHorDiv" style="margin: 10px; gap: 10px; align-items: center;">
+                <button id="ptSHx4" onclick="updateButton('ptSHx', 4)" class="listButton"></button>
+                <label>Areca nut use</label>
+              </div>
+            </div>
+          </div>
+          <div id="ptDeHx" class="ptIVerDiv" style="margin-bottom: 10px;">
+            <label style="margin: 10px 0 0 10px; font-weight: 600;">Dental History: </label>
+            <div class="ppHorDiv" style="margin: 10px; gap: 10px; align-items: center;">
+              <button id="ptDeHx0" onclick="updateButton('ptDeHx', 0)" class="listButton"></button>
+              <label>Brush &#x2265;2x daily</label>
+            </div>
+            <div class="ppHorDiv" style="margin: 0 0 10px 10px; gap: 10px; align-items: center;">
+              <button id="ptDeHx1" onclick="updateButton('ptDeHx', 1)" class="listButton"></button>
+              <label>Fluoride exposure</label>
+            </div>
+            <div class="ppHorDiv" style="margin: 0 0 10px 10px; gap: 10px; align-items: center;">
+              <button id="ptDeHx2" onclick="updateButton('ptDeHx', 2)" class="listButton"></button>
+              <label>Uses soft toothbrush</label>
+            </div>
+            <div class="ppHorDiv" style="margin: 0 0 10px 10px; gap: 10px; align-items: center;">
+              <button id="ptDeHx3" onclick="updateButton('ptDeHx', 3)" class="listButton"></button>
+              <label>Uses interdental aids <span style="color: rgb(140, 140, 140);">(Examples: dental floss, interdental brush, water flosser, etc.)</span></label>
+            </div>
+            <div class="ppHorDiv" style="margin: 0 0 10px 10px; gap: 10px; align-items: center;">
+              <button id="ptDeHx4" onclick="updateButton('ptDeHx', 4)" class="listButton"></button>
+              <label>Rinses mouth after eating and/or taking medication</label>
+            </div>
+            <div class="ppHorDiv" style="margin: 0 0 10px 10px; gap: 10px; align-items: center;">
+              <button id="ptDeHx5" onclick="updateButton('ptDeHx', 5), openDeHxTextArea('ptDeHx', 5)" class="listButton"></button>
+              <label>Had previous dental treatment complication, due to: </label>
+            </div>
+            <textarea id="DeHxTextArea" rows="4" cols="50" style="margin: 0 10px 10px 10px; resize: none; display: none;"></textarea>
+          </div>
+        </div>
+        
+        <div id="ptHxInput" class="ptIVerDiv" style="display: none; background-color: rgb(225, 225, 225); padding: 0 10px; width: calc(100% - 20px);">
+          <div class="ppHorDiv" style="margin: 10px 0 10px 0; justify-content: space-between;">
+            <div class="ppVertDiv">
+              <label style="font-weight: bold;">Examination: </label>
+            </div>
+            <button onclick="closeDiv(ptHxInput)" class="dropDownButt">&gt;</button>
+          </div>
+          <div class="ppHorDiv" style="margin: 0px 0 10px 0;">
+            <button>Standard</button>
+            <button>Perio</button>
+            <button>Ortho</button>
+            <button></button>
+          </div>
+        </div>
+      </div>
+      <div id="Ex" class="ppInputs"></div>
+      <div id="Ix" class="ppInputs"></div>
+      <div id="Dx" class="ppInputs"></div>
+      <div id="Tx" class="ppInputs"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
